@@ -1,0 +1,27 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  install-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+      
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 14.17.0
+
+      - name: Install Dependencies
+        run: npm i
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run Tests
+        run: npm run test
