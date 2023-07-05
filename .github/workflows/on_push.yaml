@@ -26,6 +26,17 @@ jobs:
       - name: Run Test coverage
         run: npm run test-coverage
 
+      - name: Depcheck
+        uses: dependency-check/Dependency-Check_Action@main
+        id: Depcheck
+        with:
+          project: 'rpvsilva_mot-workshop_AYknPb7iFqBjjEa1Me2I'
+          path: '.'
+          format: 'HTML'
+          out: 'reports' # this is the default, no need to specify unless you wish to override it
+          args: >
+            --enableRetired
+
       - uses: sonarsource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
